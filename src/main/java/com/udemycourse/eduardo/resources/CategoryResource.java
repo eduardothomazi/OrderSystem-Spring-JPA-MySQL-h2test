@@ -25,9 +25,9 @@ public class CategoryResource {
     }
 
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
-    public ResponseEntity<Optional<Category>> findById(@PathVariable Long id){
-        Optional<Category> optionalCategory = categoryService.findById(id);
-        return ResponseEntity.ok().body(optionalCategory);
+    public ResponseEntity<?> findById(@PathVariable Long id){
+        Category category = categoryService.findById(id);
+        return ResponseEntity.ok().body(category);
     }
 
 }

@@ -1,15 +1,11 @@
 package com.udemycourse.eduardo.entities;
 
-import com.fasterxml.jackson.annotation.JsonManagedReference;
-
 import javax.persistence.*;
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Objects;
 
 @Entity
-public class Category implements Serializable {
+public class City implements Serializable {
     static final long serialVersionUID = 1L;
 
     @Id
@@ -17,16 +13,21 @@ public class Category implements Serializable {
     private Long id;
     private String name;
 
-    @JsonManagedReference
-    @ManyToMany(mappedBy = "categoryList")
-    private List<Product> products = new ArrayList<>();
+    @ManyToOne
+    @JoinColumn(name = "state_id")
+    private State state;
 
-    public Category() {
+    public State getState() {
+        return state;
     }
 
-    public Category(Long id, String name) {
+    public City() {
+    }
+
+    public City(Long id, String name, State state) {
         this.id = id;
         this.name = name;
+        this.state = state;
     }
 
     public Long getId() {
@@ -45,16 +46,16 @@ public class Category implements Serializable {
         this.name = name;
     }
 
-    public List<Product> getProducts() {
-        return products;
+    public void setState(State state) {
+        this.state = state;
     }
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        Category category = (Category) o;
-        return Objects.equals(id, category.id);
+        City city = (City) o;
+        return Objects.equals(id, city.id);
     }
 
     @Override
