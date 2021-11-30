@@ -1,13 +1,8 @@
 package com.udemycourse.eduardo;
 
-import com.udemycourse.eduardo.entities.Category;
-import com.udemycourse.eduardo.entities.City;
-import com.udemycourse.eduardo.entities.Product;
-import com.udemycourse.eduardo.entities.State;
-import com.udemycourse.eduardo.repositories.CategoryRepository;
-import com.udemycourse.eduardo.repositories.CityRepository;
-import com.udemycourse.eduardo.repositories.ProductRepository;
-import com.udemycourse.eduardo.repositories.StateRepository;
+import com.udemycourse.eduardo.entities.*;
+import com.udemycourse.eduardo.entities.enums.ClientType;
+import com.udemycourse.eduardo.repositories.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -26,6 +21,10 @@ public class EduardoApplication implements CommandLineRunner {
 	private StateRepository stateRepository;
 	@Autowired
 	private CityRepository cityRepository;
+	@Autowired
+	private ClientRepository clientRepository;
+	@Autowired
+	private AddressRepository addressRepository;
 
 	public static void main(String[] args) {
 		SpringApplication.run(EduardoApplication.class, args);
@@ -61,6 +60,18 @@ public class EduardoApplication implements CommandLineRunner {
 
 		stateRepository.saveAll(Arrays.asList(s1,s2));
 		cityRepository.saveAll(Arrays.asList(c1,c2,c3));
+
+		Client cli1 = new Client(null, "Maria Silva", "maria@gmail.com", "36378912377", ClientType.PESSOAFISICA);
+		cli1.getPhones().addAll(Arrays.asList("27363323","93838393"));
+
+		Address e1 = new Address(null, "Rua Flores","300","Apto 203","Jardim","38220834", cli1, c1);
+		Address e2 = new Address(null, "Avenida Matos","105","Sala 800","Centro","38777020", cli1, c2);
+
+		cli1.getAddresses().addAll(Arrays.asList(e1,e2));
+
+		clientRepository.save(cli1);
+
+		addressRepository.saveAll(Arrays.asList(e1,e2));
 
 
 	}
