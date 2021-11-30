@@ -1,5 +1,6 @@
 package com.udemycourse.eduardo.entities;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.udemycourse.eduardo.entities.enums.ClientType;
 
 import javax.persistence.*;
@@ -18,6 +19,7 @@ public class Client implements Serializable {
     private String cpfOuCnpj;
     private Integer type;
 
+    @JsonManagedReference
     @OneToMany(mappedBy = "client")
     private List<Address> addresses = new ArrayList<>();
 
