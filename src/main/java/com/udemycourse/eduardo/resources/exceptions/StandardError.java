@@ -3,7 +3,7 @@ package com.udemycourse.eduardo.resources.exceptions;
 import java.io.Serializable;
 
 public class StandardError implements Serializable {
-    static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = 1L;
 
     private Integer status;
     private String message;

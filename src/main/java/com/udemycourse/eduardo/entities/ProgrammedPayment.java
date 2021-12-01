@@ -7,7 +7,7 @@ import java.util.Date;
 
 @Entity
 public class ProgrammedPayment extends Payment{
-    static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = 1L;
 
     private Date dueDate;
     private Date paymentDate;

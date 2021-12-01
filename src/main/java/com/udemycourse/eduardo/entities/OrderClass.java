@@ -3,10 +3,13 @@ package com.udemycourse.eduardo.entities;
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Date;
+import java.util.HashSet;
 import java.util.Objects;
+import java.util.Set;
+
 @Entity
 public class OrderClass implements Serializable {
-    static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = 1L;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -23,6 +26,9 @@ public class OrderClass implements Serializable {
     @ManyToOne
     @JoinColumn(name = "delivery_address_id")
     private Address deliveryAddress;
+
+    @OneToMany(mappedBy = "id.orderId")
+    private Set<OrderItem> items = new HashSet<>();
 
     public OrderClass() {
     }
@@ -73,6 +79,15 @@ public class OrderClass implements Serializable {
     public void setDeliveryAddress(Address deliveryAddress) {
         this.deliveryAddress = deliveryAddress;
     }
+
+    public Set<OrderItem> getItems() {
+        return items;
+    }
+
+    public void setItems(Set<OrderItem> items) {
+        this.items = items;
+    }
+
 
     @Override
     public boolean equals(Object o) {

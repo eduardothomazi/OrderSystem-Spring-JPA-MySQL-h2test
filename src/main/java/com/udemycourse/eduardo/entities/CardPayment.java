@@ -7,7 +7,7 @@ import javax.persistence.Entity;
 
 @Entity
 public class CardPayment extends Payment{
-    static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = 1L;
 
     private Integer installments;
 
