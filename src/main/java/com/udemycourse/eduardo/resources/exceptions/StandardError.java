@@ -1,6 +1,5 @@
 package com.udemycourse.eduardo.resources.exceptions;
 
-import java.io.Serial;
 import java.io.Serializable;
 
 public class StandardError implements Serializable {

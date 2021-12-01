@@ -1,8 +1,8 @@
 package com.udemycourse.eduardo.entities.enums;
 
 public enum ClientType {
-    PESSOAFISICA(1, "Pessoa Física"),
-    PESSOAJURIDICA(2, "Pessoa Jurídica");
+    PERSON(1, "Pessoa Física"),
+    BUSINESS(2, "Pessoa Jurídica");
 
     private int code;
     private String description;
