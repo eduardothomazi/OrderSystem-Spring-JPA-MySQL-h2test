@@ -1,5 +1,6 @@
 package com.udemycourse.eduardo.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.udemycourse.eduardo.entities.enums.PaymentStatus;
 
 import javax.persistence.*;
@@ -16,9 +17,7 @@ public abstract class Payment implements Serializable {
     private Long id;
     private Integer status;
 
-    @OneToOne
-    @JoinColumn(name = "order_id")
-    @MapsId
+    @JsonIgnore @OneToOne @JoinColumn(name = "order_id") @MapsId
     private OrderClass orderClass;
 
     public Payment() {
@@ -46,6 +45,7 @@ public abstract class Payment implements Serializable {
         this.status = status.getId();
     }
 
+    @JsonIgnore
     public OrderClass getOrder() {
         return orderClass;
     }

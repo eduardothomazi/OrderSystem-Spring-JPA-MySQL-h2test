@@ -1,15 +1,23 @@
 package com.udemycourse.eduardo.entities;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.udemycourse.eduardo.entities.enums.PaymentStatus;
 
 import javax.persistence.Entity;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 import java.util.Date;
 
 @Entity
 public class ProgrammedPayment extends Payment{
     private static final long serialVersionUID = 1L;
 
+    @Temporal(TemporalType.DATE)
+    @JsonFormat(pattern = "dd/MM/yyyy")
     private Date dueDate;
+
+    @Temporal(TemporalType.DATE)
+    @JsonFormat(pattern = "dd/MM/yyyy")
     private Date paymentDate;
 
 

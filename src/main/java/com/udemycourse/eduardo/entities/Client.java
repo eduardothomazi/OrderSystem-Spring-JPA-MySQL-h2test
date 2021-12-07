@@ -1,6 +1,6 @@
 package com.udemycourse.eduardo.entities;
 
-import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.udemycourse.eduardo.entities.enums.ClientType;
 
 import javax.persistence.*;
@@ -19,14 +19,14 @@ public class Client implements Serializable {
     private String cpfOuCnpj;
     private Integer type;
 
-    @JsonManagedReference
-    @OneToMany(mappedBy = "client")
+    @OneToMany(mappedBy = "client", cascade = CascadeType.ALL)
     private List<Address> addresses = new ArrayList<>();
 
     @ElementCollection
     @CollectionTable(name = "PHONE")
     private Set<String> phones = new HashSet<>();
 
+    @JsonIgnore
     @OneToMany(mappedBy = "client")
     private List<OrderClass> orderClasses = new ArrayList<>();
 
@@ -97,6 +97,7 @@ public class Client implements Serializable {
         this.phones = phones;
     }
 
+    @JsonIgnore
     public List<OrderClass> getOrders() {
         return orderClasses;
     }

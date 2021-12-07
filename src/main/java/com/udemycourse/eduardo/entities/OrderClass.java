@@ -1,6 +1,10 @@
 package com.udemycourse.eduardo.entities;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
+import java.io.Serial;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.HashSet;
@@ -9,15 +13,21 @@ import java.util.Set;
 
 @Entity
 public class OrderClass implements Serializable {
+    @Serial
     private static final long serialVersionUID = 1L;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
+    @Temporal(TemporalType.TIMESTAMP)
+    @JsonFormat(pattern = "dd/MM/yyyy HH:mm")
     private Date instant;
 
-    @OneToOne(cascade = CascadeType.ALL)
+
+    @OneToOne(cascade = CascadeType.ALL, mappedBy = "orderClass")
     private Payment payment;
+
 
     @ManyToOne
     @JoinColumn(name = "client_id")
@@ -27,7 +37,7 @@ public class OrderClass implements Serializable {
     @JoinColumn(name = "delivery_address_id")
     private Address deliveryAddress;
 
-    @OneToMany(mappedBy = "id.orderId")
+    @OneToMany(mappedBy = "id.productId")
     private Set<OrderItem> items = new HashSet<>();
 
     public OrderClass() {

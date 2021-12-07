@@ -118,9 +118,9 @@ public class EduardoApplication implements CommandLineRunner {
 		order1.getItems().addAll(Arrays.asList(orderItem1,orderItem2));
 		order2.getItems().addAll(Arrays.asList(orderItem3));
 
-		product1.getProducts().addAll(Arrays.asList(orderItem1));
-		product2.getProducts().addAll(Arrays.asList(orderItem3));
-		product3.getProducts().addAll(Arrays.asList(orderItem2));
+		product1.getItems().addAll(Arrays.asList(orderItem1));
+		product2.getItems().addAll(Arrays.asList(orderItem3));
+		product3.getItems().addAll(Arrays.asList(orderItem2));
 
 		orderItemRepository.saveAll(Arrays.asList(orderItem1,orderItem2,orderItem3));
 

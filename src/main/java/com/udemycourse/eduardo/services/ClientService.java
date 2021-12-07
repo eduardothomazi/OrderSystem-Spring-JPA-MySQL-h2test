@@ -19,8 +19,8 @@ public class ClientService {
     }
 
     public Client findById(Long id){
-        return repository.findById(id).orElseThrow(() -> new ObjectNotFoundException("Category not found! Id: "
-                + id.toString() + " Type: "
-                + Category.class.getName()));
+        return repository.findById(id).orElseThrow(() -> new ObjectNotFoundException("Client not found! Id: "
+                + id + " Type: "
+                + Client.class.getName()));
     }
 }

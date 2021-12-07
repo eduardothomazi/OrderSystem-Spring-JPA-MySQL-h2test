@@ -1,6 +1,7 @@
 package com.udemycourse.eduardo.entities;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -19,7 +20,7 @@ public class Address implements Serializable {
     private String neighborhood;
     private String zipCode;
 
-    @JsonBackReference
+    @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "client_id")
     private Client client;
@@ -31,7 +32,8 @@ public class Address implements Serializable {
     public Address() {
     }
 
-    public Address(Long id, String address, String streetNumber, String complement, String neighborhood, String zipCode, Client client, City city) {
+    public Address(Long id, String address, String streetNumber, String complement, String neighborhood, String zipCode,
+                   Client client, City city) {
         this.id = id;
         this.address = address;
         this.streetNumber = streetNumber;

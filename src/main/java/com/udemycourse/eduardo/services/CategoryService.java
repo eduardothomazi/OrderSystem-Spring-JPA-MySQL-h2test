@@ -19,7 +19,7 @@ public class CategoryService {
 
     public Category findById(Long id){
         return repository.findById(id).orElseThrow(() -> new ObjectNotFoundException("Category not found! Id: "
-                + id.toString() + " Type: "
+                + id + " Type: "
                 + Category.class.getName()));
     }
 }

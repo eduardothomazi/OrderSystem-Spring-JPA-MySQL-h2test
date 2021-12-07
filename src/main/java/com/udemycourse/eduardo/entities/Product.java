@@ -1,6 +1,6 @@
 package com.udemycourse.eduardo.entities;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -16,14 +16,15 @@ public class Product implements Serializable {
     private String name;
     private Double price;
 
-    @JsonBackReference
+    @JsonIgnore
     @ManyToMany
     @JoinTable(name = "PRODUCT_CATEGORY", joinColumns = @JoinColumn(name = "product_id"),
             inverseJoinColumns = @JoinColumn(name = "category_id"))
     private List<Category> categoryList = new ArrayList<>();
 
+    @JsonIgnore
     @OneToMany(mappedBy = "id.productId")
-    private Set<OrderItem> products = new HashSet<>();
+    private Set<OrderItem> items = new HashSet<>();
 
     public Product() {
     }
@@ -34,9 +35,10 @@ public class Product implements Serializable {
         this.price = price;
     }
 
+    @JsonIgnore
     public List<OrderClass> getOrders(){
         List<OrderClass> orderList = new ArrayList<>();
-        for (OrderItem orderItem : products){
+        for (OrderItem orderItem : items){
             orderList.add(orderItem.getOrder());
         }
         return orderList;
@@ -75,12 +77,12 @@ public class Product implements Serializable {
         this.categoryList = categoryList;
     }
 
-    public Set<OrderItem> getProducts() {
-        return products;
+    public Set<OrderItem> getItems() {
+        return items;
     }
 
-    public void setProducts(Set<OrderItem> products) {
-        this.products = products;
+    public void setItems(Set<OrderItem> items) {
+        this.items = items;
     }
 
     @Override
