@@ -1,6 +1,5 @@
 package com.udemycourse.eduardo.services;
 
-import com.udemycourse.eduardo.entities.Category;
 import com.udemycourse.eduardo.entities.Client;
 import com.udemycourse.eduardo.repositories.ClientRepository;
 import com.udemycourse.eduardo.services.exceptions.ObjectNotFoundException;
