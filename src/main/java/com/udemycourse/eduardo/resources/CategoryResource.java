@@ -1,5 +1,6 @@
 package com.udemycourse.eduardo.resources;
 
+import com.udemycourse.eduardo.datatransferobjects.CategoryDTO;
 import com.udemycourse.eduardo.entities.Category;
 import com.udemycourse.eduardo.services.CategoryService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,6 +12,7 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import java.net.URI;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping(value = "/categories")
@@ -20,8 +22,10 @@ public class CategoryResource {
     private CategoryService service;
 
     @RequestMapping(value = "/findall", method = RequestMethod.GET)
-    public ResponseEntity<List<Category>> findAll(){
-        return ResponseEntity.ok().body(service.findAll());
+    public ResponseEntity<List<CategoryDTO>> findAll(){
+        List<Category> list = service.findAll();
+        List<CategoryDTO> listDTO = list.stream().map(obj -> new CategoryDTO(obj)).collect(Collectors.toList());
+        return ResponseEntity.ok().body(listDTO);
     }
 
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
