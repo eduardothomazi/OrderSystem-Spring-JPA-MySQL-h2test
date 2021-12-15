@@ -4,9 +4,8 @@ import com.udemycourse.eduardo.datatransferobjects.CategoryDTO;
 import com.udemycourse.eduardo.entities.Category;
 import com.udemycourse.eduardo.services.CategoryService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.MediaType;
+import org.springframework.data.domain.Page;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.ServletRequestBindingException;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
@@ -55,4 +54,15 @@ public class CategoryResource {
         return ResponseEntity.noContent().build();
     }
 
+    @RequestMapping(value = "/page", method = RequestMethod.GET)
+    public ResponseEntity<Page<CategoryDTO>> findByPage(
+            @RequestParam(value = "page", defaultValue = "0") Integer page,
+            @RequestParam(value = "linesPerPage", defaultValue = "24") Integer linesPerPage,
+            @RequestParam(value = "direction", defaultValue = "ASC") String direction,
+            @RequestParam(value = "orderBy", defaultValue = "name") String orderBy){
+        Page<Category> list = service.findPage(page,linesPerPage,direction,orderBy);
+        Page<CategoryDTO> listDTO = list.map(obj -> new CategoryDTO(obj));
+        return ResponseEntity.ok().body(listDTO);
+
+    }
 }

@@ -6,6 +6,9 @@ import com.udemycourse.eduardo.services.exceptions.DbIntegrity;
 import com.udemycourse.eduardo.services.exceptions.ObjectNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -43,5 +46,10 @@ public class CategoryService {
         }catch (DataIntegrityViolationException e){
             throw new DbIntegrity("Could not delete a category with products!");
         }
+    }
+
+    public Page<Category> findPage(Integer page, Integer linesPerPage, String orderBy,String direction){
+        PageRequest pageRequest = PageRequest.of(page, linesPerPage, Sort.Direction.valueOf(orderBy), direction);
+        return repository.findAll(pageRequest);
     }
 }

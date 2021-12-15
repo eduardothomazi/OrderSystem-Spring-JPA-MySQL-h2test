@@ -53,6 +53,12 @@ public class EduardoApplication implements CommandLineRunner {
 
 		Category category1 = new Category(null, "Computers");
 		Category category2 = new Category(null, "Office");
+		Category category3 = new Category(null, "Bed, table and bath");
+		Category category4 = new Category(null, "Electronics");
+		Category category5 = new Category(null, "Garden");
+		Category category6 = new Category(null, "Decor");
+		Category category7 = new Category(null, "Perfumery");
+
 
 		Product product1 = new Product(null, "Computer", 2000.00);
 		Product product2 = new Product(null, "Printer", 800.00);
@@ -64,7 +70,7 @@ public class EduardoApplication implements CommandLineRunner {
 		product2.getCategoryList().addAll(Arrays.asList(category1,category2));
 		product3.getCategoryList().add(category1);
 
-		categoryRepository.saveAll(Arrays.asList(category1, category2));
+		categoryRepository.saveAll(Arrays.asList(category1, category2,category3,category4,category5,category6,category7));
 		productRepository.saveAll(Arrays.asList(product1,product2,product3));
 
 		State state1 = new State(null, "Minas Gerais");
