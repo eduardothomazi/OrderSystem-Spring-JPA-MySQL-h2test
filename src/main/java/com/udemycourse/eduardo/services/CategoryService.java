@@ -1,5 +1,6 @@
 package com.udemycourse.eduardo.services;
 
+import com.udemycourse.eduardo.datatransferobjects.CategoryDTO;
 import com.udemycourse.eduardo.entities.Category;
 import com.udemycourse.eduardo.repositories.CategoryRepository;
 import com.udemycourse.eduardo.services.exceptions.DbIntegrity;
@@ -51,5 +52,9 @@ public class CategoryService {
     public Page<Category> findPage(Integer page, Integer linesPerPage,String direction, String orderBy){
         PageRequest pageRequest = PageRequest.of(page, linesPerPage, Sort.Direction.valueOf(direction), orderBy);
         return repository.findAll(pageRequest);
+    }
+
+    public Category fromDTO(CategoryDTO objDTO){
+        return new Category(objDTO.getId(),objDTO.getName());
     }
 }
