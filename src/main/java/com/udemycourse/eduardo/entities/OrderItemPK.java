@@ -30,7 +30,7 @@ public class OrderItemPK implements Serializable {
         return productId;
     }
 
-    public void setProductId(Product productId) {
+    public void setProductId(Product productId)  {
         this.productId = productId;
     }
 

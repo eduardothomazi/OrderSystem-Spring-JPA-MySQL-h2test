@@ -48,8 +48,8 @@ public class CategoryService {
         }
     }
 
-    public Page<Category> findPage(Integer page, Integer linesPerPage, String orderBy,String direction){
-        PageRequest pageRequest = PageRequest.of(page, linesPerPage, Sort.Direction.valueOf(orderBy), direction);
+    public Page<Category> findPage(Integer page, Integer linesPerPage,String direction, String orderBy){
+        PageRequest pageRequest = PageRequest.of(page, linesPerPage, Sort.Direction.valueOf(direction), orderBy);
         return repository.findAll(pageRequest);
     }
 }

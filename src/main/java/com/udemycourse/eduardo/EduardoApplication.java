@@ -66,6 +66,7 @@ public class EduardoApplication implements CommandLineRunner {
 
 		category1.getProducts().addAll(Arrays.asList(product1,product2,product3));
 		category2.getProducts().add(product2);
+
 		product1.getCategoryList().add(category1);
 		product2.getCategoryList().addAll(Arrays.asList(category1,category2));
 		product3.getCategoryList().add(category1);
